@@ -1,0 +1,26 @@
+
+name: 'Dependency review'
+on:
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4
+      - name: 'Dependency Review'
+        uses: actions/dependency-review-action@v4
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+
+        with:
+          comment-summary-in-pr: always
+          fail-on-severity: moderate
+          allow-licenses: GPL-3.0-only
+          config-file: './.github/dependency-review-config.yml'
